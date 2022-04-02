@@ -11,10 +11,11 @@ const CardUnit = styled.div`
   box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.3);
 `;
 
-function Card(props) {
+function Card({ card }) {
+  console.log(card);
   return (
     <CardUnit>
-      <span>Making ...</span>
+      <span>{card.content}</span>
     </CardUnit>
   );
 }

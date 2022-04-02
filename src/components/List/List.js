@@ -10,14 +10,14 @@ const Paper = styled.div`
   border-radius: 10px;
   background-color: lightgray;
 `;
-function List(props) {
+function List({ list }) {
   return (
     <>
       <Paper>
-        <Title />
-        <Card />
-        <Card />
-        <Card />
+        <Title title={list.title} />
+        {list.cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
         <InputContainer />
       </Paper>
     </>

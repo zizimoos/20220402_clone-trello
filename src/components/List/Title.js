@@ -20,7 +20,7 @@ const InputBase = styled.input`
   background-color: gray;
 `;
 
-function Title(props) {
+function Title({ title }) {
   const [open, setOpen] = React.useState(false);
 
   const onChange = (e) => {
@@ -32,7 +32,7 @@ function Title(props) {
       {open ? (
         <div>
           <InputBase
-            value="TODO"
+            value={title}
             onChange={onChange}
             onBlur={() => setOpen(!open)}
             autoFocus
@@ -40,7 +40,7 @@ function Title(props) {
         </div>
       ) : (
         <EditTitleContainer>
-          <Typo onClick={() => setOpen(!open)}>TODO</Typo>
+          <Typo onClick={() => setOpen(!open)}>{title}</Typo>
           <MdMoreHoriz />
         </EditTitleContainer>
       )}

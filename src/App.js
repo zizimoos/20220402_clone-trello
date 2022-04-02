@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import List from "./components/List/List";
+import store from "./utils/store";
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -64,10 +66,14 @@ a {
 `;
 
 function App() {
+  const [data, setData] = useState(store);
   return (
     <>
       <GlobalStyle />
-      <List></List>
+      {data?.listIds.map((listId) => {
+        const list = data.lists[listId];
+        return <List list={list} key={listId} />;
+      })}
     </>
   );
 }

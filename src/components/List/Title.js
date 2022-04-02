@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { MdMoreHoriz } from "react-icons/md";
 
+const TitleUnit = styled.div`
+  margin-bottom: 10px;
+`;
+
 const EditTitleContainer = styled.div`
   padding: 10px 10px;
   display: flex;
@@ -19,11 +23,20 @@ const InputBase = styled.input`
 function Title(props) {
   const [open, setOpen] = React.useState(false);
 
+  const onChange = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <>
+    <TitleUnit>
       {open ? (
         <div>
-          <InputBase value="TODO" onBlur={() => setOpen(!open)} />
+          <InputBase
+            value="TODO"
+            onChange={onChange}
+            onBlur={() => setOpen(!open)}
+            autoFocus
+          />
         </div>
       ) : (
         <EditTitleContainer>
@@ -31,7 +44,7 @@ function Title(props) {
           <MdMoreHoriz />
         </EditTitleContainer>
       )}
-    </>
+    </TitleUnit>
   );
 }
 

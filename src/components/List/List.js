@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import InputContainer from "../input/InputContainer";
+import Card from "./Card";
 import Title from "./Title";
 
 const Paper = styled.div`
@@ -13,6 +15,10 @@ function List(props) {
     <>
       <Paper>
         <Title />
+        <Card />
+        <Card />
+        <Card />
+        <InputContainer />
       </Paper>
     </>
   );

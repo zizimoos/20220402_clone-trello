@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useRecoilState } from "recoil";
 import { AddCardState } from "../../atoms";
 import styled from "styled-components";
 import { BiX } from "react-icons/bi";
+import storeApi from "../../utils/storeApi";
 
 const Paper = styled.div`
   width: 100%;
@@ -31,9 +32,10 @@ const AddCardBox = styled.div`
     margin-right: 10px;
   }
 `;
-const AddCardButton = styled.div`
+const AddCardButton = styled.button`
   margin-right: 5px;
   padding: 7px;
+  border: none;
   border-radius: 5px;
   background-color: teal;
   &:hover {
@@ -42,21 +44,35 @@ const AddCardButton = styled.div`
   }
 `;
 
-function InputCard(props) {
+function InputCard({ listId }) {
   const [open, setOpen] = useRecoilState(AddCardState);
+  const { addMoreCard } = useContext(storeApi);
+  const [cardTitle, setCardTitle] = useState("");
+  const onChange = (e) => {
+    setCardTitle(e.target.value);
+  };
+  const handleConfirm = (e) => {
+    addMoreCard(cardTitle, listId);
+    setOpen(!open);
+  };
   return (
     <>
       <div>
         <Paper>
           <InputBase
-            onBlur={() => setOpen(!open)}
+            // onBlur={() => setOpen(!open)}
             placeholder="Enter a title of this card"
+            value={cardTitle}
+            onChange={onChange}
           ></InputBase>
         </Paper>
       </div>
-      <AddCardBox onClick={() => setOpen(!open)}>
-        <AddCardButton>Add CARD</AddCardButton>
-        <BiX style={{ fontSize: "25", color: "black" }} />
+      <AddCardBox>
+        <AddCardButton onClick={handleConfirm}>Add CARD</AddCardButton>
+        <BiX
+          onClick={() => setOpen(!open)}
+          style={{ fontSize: "25", color: "black" }}
+        />
       </AddCardBox>
     </>
   );

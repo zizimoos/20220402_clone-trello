@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import { createGlobalStyle } from "styled-components";
 import List from "./components/List/List";
 import store from "./utils/store";
+import StoreApi from "./utils/storeApi";
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -67,14 +69,26 @@ a {
 
 function App() {
   const [data, setData] = useState(store);
+  const addMoreCard = (title, listId) => {
+    const newCardId = uuid();
+    const newCard = {
+      id: newCardId,
+      title: title,
+    };
+    const list = data.lists[listId];
+    list.cards = [...list.cards, newCard];
+    setData({ ...data, lists: { ...data.lists, [listId]: list } });
+  };
   return (
-    <>
-      <GlobalStyle />
-      {data?.listIds.map((listId) => {
-        const list = data.lists[listId];
-        return <List list={list} key={listId} />;
-      })}
-    </>
+    <StoreApi.Provider value={{ addMoreCard }}>
+      <>
+        <GlobalStyle />
+        {data?.listIds.map((listId) => {
+          const list = data.lists[listId];
+          return <List list={list} key={listId} />;
+        })}
+      </>
+    </StoreApi.Provider>
   );
 }
 

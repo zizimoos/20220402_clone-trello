@@ -17,18 +17,19 @@ const Paper = styled.div`
 
 const AddCard = styled.div``;
 
-function InputContainer(props) {
+function InputContainer({ listId }) {
   const [open, setOpen] = useRecoilState(AddCardState);
+
   return (
-    <>
+    <div>
       {open ? (
-        <InputCard />
+        <InputCard listId={listId} />
       ) : (
         <Paper onClick={() => setOpen(!open)}>
           <AddCard>{`+ Add a Card `}</AddCard>
         </Paper>
       )}
-    </>
+    </div>
   );
 }
 

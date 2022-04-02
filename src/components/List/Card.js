@@ -15,7 +15,7 @@ function Card({ card }) {
   console.log(card);
   return (
     <CardUnit>
-      <span>{card.content}</span>
+      <span>{card.title}</span>
     </CardUnit>
   );
 }

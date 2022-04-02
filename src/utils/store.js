@@ -1,15 +1,15 @@
 const cards = [
   {
     id: "card-1",
-    content: "Learning how to cook",
+    title: "Learning how to cook",
   },
   {
     id: "card-2",
-    content: "Making a sandwich",
+    title: "Making a sandwich",
   },
   {
     id: "card-3",
-    content: "Taking the trash out",
+    title: "Taking the trash out",
   },
 ];
 
@@ -26,11 +26,11 @@ const data = {
       cards: [
         {
           id: "card-4",
-          content: "Cloning trello",
+          title: "Cloning trello",
         },
         {
           id: "card-5",
-          content: "upload video to youtube",
+          title: "upload video to youtube",
         },
       ],
     },

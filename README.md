@@ -9,8 +9,8 @@ PART 1:
 
 PART 2:
 
-- [] initialize data
-- [] add card to list
+- [x] initialize data
+- [x] add card to list
 - [] add new list
 - [] update list title
 
